@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{set 'styles'}
+    #{stylesheet 'bootstrap.min.css' /}
+    #{stylesheet 'main.css' /}
+#{/set}
+#{set 'scripts'}
+    #{script 'jquery-1.6.4.min.js' /}
+    #{script 'highcharts.js' /}
+    #{script 'main.js' /}
+#{/set}
+
+
+<div class="container">
+    <h1>${link}</h1>
+
+    <menu class="col-sm-2">
+        #{list items:tags.keySet(), as:'tag'}
+            <button class="btn btn-primary">
+                <span class="tag">${tag}</span>
+                <span class="badge">${tags.get(tag)}</span>
+            </button>
+        #{/list}
+            <p><a href="@{Application.index()}">Back to form</a></p>
+    </menu>
+
+    <section class="col-sm-10">
+        <figure class="chart-wrapper">
+            <div id="classchart"></div>
+            <div id="highchart"></div>
+        </figure>
+        <div class="well">
+            <code>
+                #{list items:html, as:'line'}
+                    ${line}<br />
+                #{/list}
+            </code>
+        </div>
+    </section>
+
+
+</div>
