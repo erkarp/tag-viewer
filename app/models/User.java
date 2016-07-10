@@ -9,11 +9,24 @@ import play.db.jpa.*;
 @Entity
 public class User extends Model {
 
+    public static boolean isAlpha(String name) {
+        char[] chars = name.toCharArray();
+
+        for (char c : chars) {
+            if(!Character.isLetter(c)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static String toString(HashMap<String, Integer> map) {
         String str = "{ ";
 
         for (Map.Entry<String, Integer> tag : map.entrySet()) {
-            str += tag.getKey() + ": " + tag.getValue() + ", ";
+            if ( isAlpha("" + tag.getKey()) )
+              str += tag.getKey() + ": " + tag.getValue() + ", ";
         }
 
         System.out.println(str);
