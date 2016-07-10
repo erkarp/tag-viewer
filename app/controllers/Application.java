@@ -18,8 +18,7 @@ public class Application extends Controller {
     }
     public static String html;
 
-    public static void bar()
-    {
+    public static void bar() {
         render("/path/to/template.html");
     }
 

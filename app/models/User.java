@@ -90,8 +90,8 @@ public class User extends Model {
 
         }
 
-        System.out.println(toString(count));
-        return toString(count);
+        tag = toString(count)
+        return tag;
     }
 
     public static int tagEndIndex(String html, int start) {
