@@ -33,7 +33,7 @@ public class Application extends Controller {
         String join = User.joinHTML(html);
         HashMap<String, Integer> tags = User.tagCount( join );
 
-        render(html, link, new JSONObject(tags));
+        render(html, link, tags);
     }
 
 }
