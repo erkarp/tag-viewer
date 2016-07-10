@@ -2,12 +2,16 @@
  * Created by ekarp on 7/7/16.
  */
 
-$('document').ready(function() {
+var temp = JSON.parse( window.tags.replace(/'/g,'"') ),
+    tags = [], nums = [];
 
-    var data, dataStore = {
-      tags: tags.keySet(),
-      nums: tags.values()
-    };
+for (var tag in temp) {
+    tags.push(tag);
+    nums.push(temp[tag]);
+}
+var data = { tags: tags, nums: nums };
+
+$('document').ready(function() {
 
 /**
     $(function () {
@@ -26,7 +30,6 @@ $('document').ready(function() {
 */
 
     $(function resetChart() {
-        data = dataStore;
         drawBaseChart();
     });
 
@@ -39,7 +42,7 @@ $('document').ready(function() {
                 text: 'Tag Frequency'
             },
             xAxis: {
-                categories: dataStore.tags,
+                categories: tags,
                 title: {
                     text: null
                 }
@@ -67,7 +70,7 @@ $('document').ready(function() {
             },
             series: [{
                 name: 'Tags Used In Document',
-                data: dataStore.nums
+                data: nums
             }]
         });
     };

@@ -22,15 +22,14 @@ public class User extends Model {
     }
 
     public static String toString(HashMap<String, Integer> map) {
-        String str = "{ ";
+        String str = "{";
 
         for (Map.Entry<String, Integer> tag : map.entrySet()) {
             if ( isAlpha("" + tag.getKey()) )
-              str += tag.getKey() + ": " + tag.getValue() + ", ";
+              str += "'" + tag.getKey() + "':" + tag.getValue() + ",";
         }
 
-        System.out.println(str);
-        return str + " }";
+        return str.substring(0, str.length()-1) + "}";
     }
 
 
