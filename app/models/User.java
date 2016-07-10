@@ -74,7 +74,6 @@ public class User extends Model {
                 tag = html.substring(start, jump);
                 html = html.substring(jump);
 
-
                 if (count.get(tag) != null) {
 
                     x = count.get(tag);
@@ -87,7 +86,6 @@ public class User extends Model {
                 html = html.substring(start);
 
             System.out.println(html.indexOf("</") + " ~~ " + html.lastIndexOf("</"));
-
         }
 
         tag = toString(count)
