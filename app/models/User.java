@@ -13,7 +13,7 @@ public class User extends Model {
     public static String toString(HashMap<String, Integer> map) {
         String str = "{ ";
 
-        for (Map.Entry<String, String> tag : map.entrySet()) {
+        for (Map.Entry<String, Integer> tag : map.entrySet()) {
             str += tag.getKey() + ": " + tag.getValue() + ", ";
         }
 
@@ -88,7 +88,7 @@ public class User extends Model {
             System.out.println(html.indexOf("</") + " ~~ " + html.lastIndexOf("</"));
         }
 
-        tag = toString(count)
+        tag = toString(count);
         return tag;
     }
 
