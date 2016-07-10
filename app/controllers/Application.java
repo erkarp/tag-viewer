@@ -23,7 +23,7 @@ public class Application extends Controller {
         render("/path/to/template.html");
     }
 
-    public static void sayHello(@Required String link) throws Exception {
+    public static void graph(@Required String link) throws Exception {
         if(validation.hasErrors()) {
             flash.error("Oops, please enter a url!");
             index();
@@ -33,7 +33,7 @@ public class Application extends Controller {
         String join = User.joinHTML(html);
         HashMap<String, Integer> tags = User.tagCount( join );
 
-        render(html, link, tags);
+        render(html, link, new JSONObject(tags));
     }
 
 }

@@ -4,8 +4,12 @@
 
 $('document').ready(function() {
 
-    var data, dataStore = { tags: [], nums: [] };
+    var data, dataStore = {
+      tags: tags.keySet(),
+      nums: tags.values()
+    };
 
+/**
     $(function () {
         var num = 0;
 
@@ -19,14 +23,12 @@ $('document').ready(function() {
         resetChart();
 
     })
+*/
 
-
-    function resetChart() {
+    $(function resetChart() {
         data = dataStore;
         drawBaseChart();
-    };
-
-
+    });
 
     function drawBaseChart() {
         $('#highchart').highcharts({

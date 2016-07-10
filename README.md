@@ -1,1 +1,1 @@
-## View HTML element stats on a given webpage
+### View HTML element stats on a given webpage
