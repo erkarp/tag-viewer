@@ -29,9 +29,9 @@ public class Application extends Controller {
             index();
         }
 
-        List<String> html = User.crawl(link);
-        String join = User.joinHTML(html);
-        HashMap<String, Integer> tags = User.tagCount( join );
+        List<String> html = User.crawl( link );
+        String join = User.joinHTML( html );
+        String tags = User.tagCount( join );
 
         render(html, link, tags);
     }

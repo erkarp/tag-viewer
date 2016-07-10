@@ -4,7 +4,9 @@
 
 $('document').ready(function() {
 
-    var data, dataStore = {
+    var tags = $('.container').data('info'),  data,
+
+    dataStore = {
       tags: tags.keySet(),
       nums: tags.values()
     };

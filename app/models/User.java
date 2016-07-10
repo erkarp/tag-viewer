@@ -10,6 +10,16 @@ import play.db.jpa.*;
 @Entity
 public class User extends Model {
 
+    private static String toString(HashMap<String, Integer> map) {
+        String str = "{ ";
+
+        for (Map.Entry<String, String> tag : map.entrySet()) {
+            str += tag.getKey() + ": " + tag.getValue() + ", ";
+        }
+
+        return str + " }";
+    }
+
 
     public static List<String> crawl(String link) throws Exception {
 
@@ -47,7 +57,7 @@ public class User extends Model {
         return joined;
     }
 
-    public static HashMap tagCount(String html) {
+    public static String tagCount(String html) {
 
         HashMap<String, Integer> count = new HashMap();
         String tag;
@@ -65,7 +75,6 @@ public class User extends Model {
                 jump = tagEndIndex(html, start);
                 tag = html.substring(start, jump);
                 html = html.substring(jump);
-                System.out.println("TAG"  + tag);
 
 
                 if (count.get(tag) != null) {
@@ -84,7 +93,7 @@ public class User extends Model {
         }
 
 
-        return count;
+        return toString(count);
     }
 
     public static int tagEndIndex(String html, int start) {
