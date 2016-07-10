@@ -58,13 +58,11 @@ public class User extends Model {
     }
 
     public static String tagCount(String html) {
-
         HashMap<String, Integer> count = new HashMap();
         String tag;
         int start = 0;
         int jump = 0;
         int x = 0;
-
 
         while (  html.indexOf("</") != html.lastIndexOf("</")  ) {
 
@@ -92,7 +90,7 @@ public class User extends Model {
 
         }
 
-
+        System.out.println(toString(count));
         return toString(count);
     }
 
