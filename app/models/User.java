@@ -4,7 +4,6 @@ import java.util.*;
 import java.net.*;
 import java.io.*;
 import javax.persistence.*;
-
 import play.db.jpa.*;
 
 @Entity
@@ -17,6 +16,7 @@ public class User extends Model {
             str += tag.getKey() + ": " + tag.getValue() + ", ";
         }
 
+        System.out.println(str);
         return str + " }";
     }
 
@@ -51,7 +51,6 @@ public class User extends Model {
             if (str.trim().length() > 0) {
                 joined += str + '\n';
             }
-            System.out.println("i " + i);
         }
 
         return joined;
@@ -84,8 +83,6 @@ public class User extends Model {
 
             } else
                 html = html.substring(start);
-
-            System.out.println(html.indexOf("</") + " ~~ " + html.lastIndexOf("</"));
         }
 
         tag = toString(count);
