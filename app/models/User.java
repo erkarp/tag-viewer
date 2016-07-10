@@ -10,7 +10,7 @@ import play.db.jpa.*;
 @Entity
 public class User extends Model {
 
-    private static String toString(HashMap<String, Integer> map) {
+    public static String toString(HashMap<String, Integer> map) {
         String str = "{ ";
 
         for (Map.Entry<String, String> tag : map.entrySet()) {
