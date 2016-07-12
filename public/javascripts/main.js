@@ -9,25 +9,8 @@ for (var tag in temp) {
     tags.push(tag);
     nums.push(temp[tag]);
 }
-var data = { tags: tags, nums: nums };
 
 $('document').ready(function() {
-
-/**
-    $(function () {
-        var num = 0;
-
-        $('menu').children('button').each(function(btn) {
-
-            dataStore['tags'].push($(this).children('.tag').html());
-            num = $(this).children('.badge').html();
-            dataStore['nums'].push(parseInt(num));
-
-        })
-        resetChart();
-
-    })
-*/
 
     $(function resetChart() {
         drawBaseChart();

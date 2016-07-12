@@ -10,28 +10,24 @@
     window.tags = "${tags}";
 </script>
 
+
 <div class="container">
     <h1>${link}</h1>
 
-    <section class="col-sm-10">
+    <figure class="chart-wrapper col-md-8">
+        <div id="classchart"></div>
+        <div id="highchart"></div>
+    </figure>
 
-        <figure class="chart-wrapper">
-            <div id="classchart"></div>
-            <div id="highchart"></div>
-        </figure>
-
-        <div class="well">
-            <code>
-                #{list items:html, as:'line'}
-                    ${line}<br />
-                #{/list}
-            </code>
-        </div>
-
-    </section>
+    <div class="well col-md-4">
+        #{list items:html, as:'line'}
+            <code>${line}</code>
+        #{/list}
+    </div>
 
     <p><a href="@{Application.index()}">Back to form</a></p>
 </div>
+
 
 
 #{set 'scripts'}
