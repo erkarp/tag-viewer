@@ -7,10 +7,6 @@ label {
     width: 70px;
 }
 
-.chart-wrapper {
-    min-height: 200px;
-}
-
 #classchart {
     display: none;
 }
@@ -23,8 +19,8 @@ label {
 
 
 .well {
+    height: 350px;
     overflow-y: scroll;
-    max-height: 50vh;
 }
 
 code {

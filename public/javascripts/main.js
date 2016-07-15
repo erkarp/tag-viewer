@@ -16,6 +16,7 @@ $('document').ready(function() {
         drawBaseChart();
     });
 
+
     function drawBaseChart() {
         $('#highchart').highcharts({
             chart: {
@@ -54,7 +55,10 @@ $('document').ready(function() {
             series: [{
                 name: 'Tags Used In Document',
                 data: nums
-            }]
+            }],
+            legend: {
+              enabled: false
+            }
         });
     };
 
@@ -62,60 +66,43 @@ $('document').ready(function() {
 
 
 
-    function drawClassChart() {
+    function drawClassChart(axis, data) {
         $('#highchart').highcharts({
             chart: {
-                type: 'column'
+                type: 'pie'
             },
             title: {
-                text: 'Tag Frequency'
+                text: 'Class Frequency'
             },
             xAxis: {
-                categories: dataStore.tags,
+                categories: axis,
                 title: {
                     text: null
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Instances'
-                },
-                labels: {
-                    overflow: 'justify'
                 }
             },
             tooltip: {
                 valueSuffix: ' instances'
             },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: false
-                    }
-                }
-            },
             credits: {
                 enabled: false
             },
             series: [{
-                name: 'Tags Used In Document',
-                data: dataStore.nums
+                name: 'Classes Used With Tag',
+                data: data
             }]
         });
     };
-
-
-
 
 
 
     var hits, cl = {}, clT = [],
         box = $('code').html();
 
-    $('button').bind('click',  function(e) {
+    $('text').bind('click', function() {
 
         var tag = $(this).find('.tag').html(),
-            reg = new RegExp('&lt;1(.*?)&gt;'.replace('1', tag), 'g');
+            reg = new RegExp('&lt;1(.*?)&gt;'.replace('1', tag), 'g'),
+            axis = [], data = [];
 
         hits = box.match(reg);
 
@@ -132,7 +119,13 @@ $('document').ready(function() {
 
         });
 
-        console.dir(cl);
+        for (var c in cl) {
+            axis.push(c);
+            data.push(cl[c]);
+        }
 
+        drawClassChart(axis, data);
+        $('#highchart').css('display', 'none');
+        $('#classchart').css('display', 'block');
     });
 })
