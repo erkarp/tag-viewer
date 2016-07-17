@@ -30,3 +30,17 @@ code {
     margin: 0 0 1px 0;
     font-size: 10px;
 }
+
+code:hover {
+  text-shadow: 0 0 .1px rgba(255,0,0,.7);
+}
+
+tspan:hover {
+  font-size: large;
+  cursor: pointer;
+  transition: .2s;
+}
+
+tspan:active {
+  fill: 7cb5ec;
+}
