@@ -19,7 +19,7 @@
         <div id="highchart"></div>
     </figure>
 
-    <div class="well col-md-4">
+    <div class="well col-md-4" id="code">
         #{list items:html, as:'line'}
             <code>${line}</code>
         #{/list}
@@ -31,7 +31,7 @@
 
 
 #{set 'scripts'}
-    #{script 'https://code.jquery.com/jquery-3.1.0.min.js' /}
+    #{script 'jquery-3.1.0.min.js' /}
     #{script 'highcharts.js' /}
     #{script 'main.js' /}
 #{/set}
