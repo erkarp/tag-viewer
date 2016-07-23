@@ -9,97 +9,95 @@ var temp = JSON.parse( window.tags.replace(/'/g,'"') ),
 code.each(function(i, e) { box += e.innerText });
 
 for (var tag in temp) {
-    tags.push(tag);
-    nums.push(temp[tag]);
+  nums.push(temp[tag]);
+  tags.push(tag);
 }
 
 $('document').ready(function() {
 
     $(function resetChart() {
-        drawBaseChart();
+      $('#highchart').highcharts({
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'Tag Frequency'
+          },
+          xAxis: {
+              categories: tags,
+              labels: {
+                  overflow: 'justify',
+                  formatter: function () {
+                    var txt = this.value.name;
+                    return '<tspan id="' + txt + '">' + txt + '</tspan>';
+                  }
+              }
+          },
+          yAxis: {
+              title: {
+                  text: 'Instances'
+              },
+              labels: {
+                  overflow: 'justify'
+              }
+          },
+          tooltip: {
+              valueSuffix: ' instances'
+          },
+          plotOptions: {
+              bar: {
+                  dataLabels: {
+                      enabled: true
+                  }
+              }
+          },
+          credits: {
+              enabled: false
+          },
+          series: [{
+              name: 'Tags Used In Document',
+              data: nums
+          }],
+          legend: {
+            enabled: false
+          }
+      });
     });
 
-
-    function drawBaseChart() {
-        $('#highchart').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Tag Frequency'
-            },
-            xAxis: {
-                categories: tags,
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Instances'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' instances'
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Tags Used In Document',
-                data: nums
-            }],
-            legend: {
-              enabled: false
-            }
-        });
-    };
-
-
-
-
-
-    function drawClassChart(axis, data) {
-        $('#classchart').highcharts({
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Class Frequency'
-            },
-            xAxis: {
-                categories: axis,
-                title: {
-                    text: null
-                }
-            },
-            tooltip: {
-                valueSuffix: ' instances'
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Classes Used With Tag',
-                data: data
-            }]
-        });
-    };
 })
+
+
+function drawClassChart(axis, data) {
+    $('#classchart').highcharts({
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: 'Class Frequency'
+        },
+        xAxis: {
+            categories: axis,
+            title: {
+                text: null
+            }
+        },
+        tooltip: {
+            valueSuffix: ' instances'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Classes Used With Tag',
+            data: data
+        }]
+    });
+};
+
 
 $('body').on('click', 'tspan', function() {
 
-    var cl = {}, clT = [], axis = [], data = [], tag = this.innerHtml,
+    var cl = {}, clT = [], axis = [], data = [], tag = this.id,
         reg = new RegExp('&lt;1(.*?)&gt;'.replace('1', tag), 'g'),
         hits = box.match(reg);
 
