@@ -68,44 +68,40 @@ $('document').ready(function() {
             }
         });
     };
-
-
-
-
-
-    function drawClassChart(axis, data) {
-        $('#classchart').highcharts({
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Class Frequency'
-            },
-            xAxis: {
-                categories: axis,
-                title: {
-                    text: null
-                }
-            },
-            tooltip: {
-                valueSuffix: ' instances'
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Classes Used With Tag',
-                data: data
-            }]
-        });
-    };
 })
+
+function drawClassChart(axis, data) {
+    $('#classchart').highcharts({
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: 'Class Frequency'
+        },
+        xAxis: {
+            categories: axis,
+            title: {
+                text: null
+            }
+        },
+        tooltip: {
+            valueSuffix: ' instances'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Classes Used With Tag',
+            data: data
+        }]
+    });
+};
+
 
 $('body').on('click', 'tspan', function() {
 
-    var cl = {}, clT = [], axis = [], data = [],
-tag = this.innerHtml,
-        reg = new RegExp('&lt;1(.*?)&gt;'.replace('1', tag), 'g'),
+    var cl = {}, clT = [], axis = [], data = [], tag = this.innerHTML,
+        reg = new RegExp('<1(.*?)>'.replace('1', tag), 'g'),
         hits = box.match(reg);
 
     hits.forEach(function(i) {
