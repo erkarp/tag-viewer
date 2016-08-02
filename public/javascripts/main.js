@@ -6,7 +6,11 @@ var temp = JSON.parse( window.tags.replace(/'/g,'"') ),
     tags = [], nums = [],  box = '',
     code = $('#code').children();
 
-code.each(function(i, e) { box += e.innerText });
+code.each(function(i, e) {
+  if (e.innerText.length > 0 && e.innerText.search(/[^\s]/) > -1) {
+    box += e.innerText
+  }
+});
 
 for (var tag in temp) {
     tags.push(tag);
@@ -68,7 +72,7 @@ $('document').ready(function() {
             }
         });
     };
-})
+});
 
 function drawClassChart(axis, data) {
     $('#classchart').highcharts({
@@ -93,7 +97,13 @@ function drawClassChart(axis, data) {
         series: [{
             name: 'Classes Used With Tag',
             data: data
-        }]
+        }],
+        plotOptions: {
+          pie: {
+            enabled: true,
+            formatter: function() {return '<b>' + this.value.name +'</b>'},
+          }
+        }
     });
 };
 
