@@ -74,19 +74,13 @@ $('document').ready(function() {
     };
 });
 
-function drawClassChart(axis, data) {
+function drawClassChart(data) {
     $('#classchart').highcharts({
         chart: {
             type: 'pie'
         },
         title: {
             text: 'Class Frequency'
-        },
-        xAxis: {
-            categories: axis,
-            title: {
-                text: null
-            }
         },
         tooltip: {
             valueSuffix: ' instances'
@@ -100,8 +94,7 @@ function drawClassChart(axis, data) {
         }],
         plotOptions: {
           pie: {
-            enabled: true,
-            formatter: function() {return '<b>' + this.value.name +'</b>'},
+            enabled: true
           }
         }
     });
@@ -110,7 +103,7 @@ function drawClassChart(axis, data) {
 
 $('body').on('click', 'tspan', function() {
 
-    var cl = {}, clT = [], axis = [], data = [], tag = this.innerHTML,
+    var cl = {}, clT = [], data = [], tag = this.innerHTML,
         reg = new RegExp('<1(.*?)>'.replace('1', tag), 'g'),
         hits = box.match(reg);
 
@@ -124,14 +117,16 @@ $('body').on('click', 'tspan', function() {
                 cl[name] = cl.hasOwnProperty(name) ? ++cl[name] : 0;
             });
         }
-
     });
 
     for (var c in cl) {
-        axis.push(c);
         data.push(cl[c]);
+        data.push({
+          name: c,
+          y: cl[c]
+        })
     }
 
-    drawClassChart(axis, data);
+    drawClassChart(data);
     $('#classchart').css('display', 'block');
 });
