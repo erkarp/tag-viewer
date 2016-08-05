@@ -94,7 +94,10 @@ function drawClassChart(data) {
         }],
         plotOptions: {
           pie: {
-            enabled: true
+            dataLabels: {
+              enabled: true,
+              formatter: function() {return this.point.name}
+            }
           }
         }
     });
@@ -120,7 +123,6 @@ $('body').on('click', 'tspan', function() {
     });
 
     for (var c in cl) {
-        data.push(cl[c]);
         data.push({
           name: c,
           y: cl[c]
