@@ -14,10 +14,12 @@
 <div class="container">
     <h1>${link}</h1>
 
-    <figure class="chart-wrapper col-md-8">
-        <div id="classchart"></div>
-        <div id="highchart"></div>
-    </figure>
+    <div class="col-md-8">
+      <figure class="chart-wrapper">
+          <div id="classchart"></div>
+          <div id="highchart"></div>
+      </figure>
+    </div>
 
     <div class="well col-md-4" id="code">
         #{list items:html, as:'line'}
