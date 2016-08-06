@@ -7,9 +7,7 @@ var temp = JSON.parse( window.tags.replace(/'/g,'"') ),
     code = $('#code').children();
 
 code.each(function(i, e) {
-  if (e.innerText.length > 0 && e.innerText.search(/[^\s]/) > -1) {
     box += e.innerText
-  }
 });
 
 for (var tag in temp) {
@@ -74,22 +72,25 @@ $('document').ready(function() {
     };
 });
 
-function drawClassChart(data) {
+function drawClassChart(tag, data) {
+    var title = 'Classes on ' + tag.toUpperCase() + ' Tags',
+      tooltip = ' instances on ' + tag;
     $('#classchart').highcharts({
         chart: {
-            type: 'pie'
+            type: 'pie',
+            width: 500
         },
         title: {
-            text: 'Class Frequency'
+            text: title
         },
         tooltip: {
-            valueSuffix: ' instances'
+            valueSuffix: tooltip
         },
         credits: {
             enabled: false
         },
         series: [{
-            name: 'Classes Used With Tag',
+            name: null,
             data: data
         }],
         plotOptions: {
@@ -129,6 +130,6 @@ $('body').on('click', 'tspan', function() {
         })
     }
 
-    drawClassChart(data);
+    drawClassChart(tag, data);
     $('#classchart').css('display', 'block');
 });

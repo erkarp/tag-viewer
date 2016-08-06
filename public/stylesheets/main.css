@@ -1,25 +1,40 @@
 h1 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 label {
-    display: inline-block;
-    width: 70px;
+  display: inline-block;
+  width: 70px;
 }
 
-.chart-wrapper {
-    position: relative;
+#classchart,
+#highchart {
+  width: 100%;
+  height: 100%;
 }
 
 #classchart {
-    display: none;
+  display: none;
+  border: 1px solid lightblue;
+  box-shadow: 0 1px 3px lavender;
+  border-radius: 10px;
+  z-index: 1;
 }
 
-#highchart,
-#classchart{
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
+#classchart:after {
+  content: 'X';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 2px;
+  color: #ccc;
+  font-size: 15px;
+  transform: scaleX(1.2);
+  -webkit-transform: scaleX(1.2);
+}
+
+.highcharts-container {
+  margin: 0 auto;
 }
 
 

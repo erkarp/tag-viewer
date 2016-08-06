@@ -22,12 +22,14 @@
     </div>
 
     <div class="well col-md-4" id="code">
-        #{list items:html, as:'line'}
-            <code>${line}</code>
-        #{/list}
+      #{list items:html, as:'line'}
+        #{if line.length()}
+          <code>${line}</code>
+        #{/if}
+      #{/list}
+      <p><a href="@{Application.index()}">Back to form</a></p>
     </div>
 
-    <p><a href="@{Application.index()}">Back to form</a></p>
 </div>
 
 
