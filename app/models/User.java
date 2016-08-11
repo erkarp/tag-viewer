@@ -39,10 +39,8 @@ public class User extends Model {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(oracle.openStream()));
 
-
         List<String> collection = new ArrayList<String>();
         String inputLine;
-
 
         while ((inputLine = in.readLine()) != null) {
             collection.add(inputLine);

@@ -8,6 +8,7 @@
 #{/if}
 
 <form action="@{Application.graph()}" method="GET">
-    <label>Link:</label> <input type="url" name="link" />
+    <label for="link">Link:</label> <input type="url" name="link" />
+    <label for="min">Min instances:</label> <input type="number" name="min" value="3">
     <input type="submit" value="Go!" />
 </form>

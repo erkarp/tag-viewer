@@ -4,15 +4,18 @@
 
 var temp = JSON.parse( window.tags.replace(/'/g,'"') ),
     tags = [], nums = [],  box = '',
-    code = $('#code').children();
+    code = $('#code').children(),
+    min = window.min;
 
 code.each(function(i, e) {
     box += e.innerText
 });
 
 for (var tag in temp) {
+  if (temp[tag] > min) {
     tags.push(tag);
     nums.push(temp[tag]);
+  }
 }
 
 $('document').ready(function() {
@@ -84,7 +87,7 @@ function drawClassChart(tag, data) {
             text: title
         },
         tooltip: {
-            valueSuffix: tooltip
+            valueSuffix: ' instances'
         },
         credits: {
             enabled: false
@@ -106,30 +109,34 @@ function drawClassChart(tag, data) {
 
 
 $('body').on('click', 'tspan', function() {
-
-    var cl = {}, clT = [], data = [], tag = this.innerHTML,
-        reg = new RegExp('<1(.*?)>'.replace('1', tag), 'g'),
-        hits = box.match(reg);
-
-    hits.forEach(function(i) {
-        var list = i.match(/class="(.*?)"/);
-
-        if (list) {
-            clT = list[1].split(' ');
-
-            clT.forEach(function(name) {
-                cl[name] = cl.hasOwnProperty(name) ? ++cl[name] : 0;
-            });
-        }
-    });
-
-    for (var c in cl) {
-        data.push({
-          name: c,
-          y: cl[c]
-        })
-    }
-
-    drawClassChart(tag, data);
-    $('#classchart').css('display', 'block');
+  parseClass(this.innerHTML);
 });
+
+
+function parseClass(tag) {
+  var cl = {}, clT = [], data = [],
+      reg = new RegExp('<1(.*?)>'.replace('1', tag), 'g'),
+      hits = box.match(reg);
+
+  hits.forEach(function(i) {
+      var list = i.match(/class="(.*?)"/);
+
+      if (list) {
+          clT = list[1].split(' ');
+
+          clT.forEach(function(name) {
+              cl[name] = cl.hasOwnProperty(name) ? ++cl[name] : 0;
+          });
+      }
+  });
+
+  for (var c in cl) {
+      data.push({
+        name: c,
+        y: cl[c]
+      })
+  }
+
+  drawClassChart(tag, data);
+  $('#classchart').css('display', 'block');
+}
